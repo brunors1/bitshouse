@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import CartWidget from './CartWidget';
 
 function NavBar() {
     return (
@@ -44,9 +45,7 @@ function NavBar() {
               </div>
             </div>
             <div className="d-flex gap-3">
-              <a className="nav-link p-2 border rounded bg-success" href="#">
-                <i className="fa-solid fa-cart-shopping fa-lg text-white"></i>
-              </a>
+              <CartWidget/>
               <a className="nav-link p-2 border rounded bg-success" href="#">
                 <i className="fa-solid fa-user fa-lg text-white"></i>
               </a>
