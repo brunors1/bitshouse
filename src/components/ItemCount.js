@@ -24,12 +24,12 @@ function ItemCount({ stock, initial, onAdd }) {
 
   return (
     <div className="bg-white p-4 square">
-      <div class="input-group mb-2 border rounded border-success-subtle">
+      <div className="input-group mb-2 border rounded border-success-subtle">
         <button className="btn btn-success" onClick={handleDecrease}>-</button>
         <span className="ms-auto my-auto">{count}</span>
         <button className="btn btn-success ms-auto " onClick={handleIncrease}>+</button>
       </div>
-      <div class="input-group mx-auto mb-2 d-grid">
+      <div className="input-group mx-auto mb-2 d-grid">
         <button className="btn btn-success" onClick={handleAdd} disabled={stock === 0}>
           {stock === 0 ? 'Fora de estoque' : `Adicionar ao carrinho`}
         </button>
