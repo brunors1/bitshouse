@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ItemDetail from './ItemDetail';
 import { mockData } from './ItemList';
+import { useParams } from 'react-router-dom';
 
 const getItems = () => {
   return new Promise((resolve) => {
@@ -12,12 +13,15 @@ const getItems = () => {
 
 function ItemDetailContainer() {
   const [item, setItem] = useState(null);
+  const { itemId: itemIdParam } = useParams();
 
   useEffect(() => {
+    const itemId = parseInt(itemIdParam);
     getItems().then(result => {
-      setItem(result[0]);
+      const foundItem = result.find(item => item.id === itemId);
+      setItem(foundItem);
     });
-  }, []);
+  }, [itemIdParam]);
 
   if (!item) {
     return (
@@ -34,7 +38,7 @@ function ItemDetailContainer() {
   return (
     <section>
       <div className='container bg-white'>
-        <ItemDetail key={item.id} title={item.title} price={item.price} pictureUrl={item.pictureUrl} description={item.description} stock={item.stock} />
+        <ItemDetail key={item.id} title={item.title} price={item.price} pictureUrl={item.pictureUrl} description={item.description} stock={item.stock} subCategory={item.subCategory} category={item.category}/>
       </div>
     </section>
   )

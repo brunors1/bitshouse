@@ -1,39 +1,55 @@
-import React, { Fragment, useState, useEffect } from "react";
-import Greetings from "./Greetings";
-import ItemCount from "./ItemCount";
+import React, { useState, useEffect } from "react";
 import ItemList from "./ItemList";
+import { mockData } from "./ItemList";
+import { useParams } from "react-router-dom";
 
 function ItemListContainer() {
-  const [showItemList, setShowItemList] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [allItems, setAllItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const { categoryId } = useParams();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setShowItemList(true);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeoutId);
+    const fetchData = async () => {
+      try {
+        const result = await getMockData();
+        setAllItems(result);
+        setTimeout(() => setLoading(false), 2000); // delay de 2 segundos
+      } catch (error) {
+        console.error(error);
+      }
     };
+    fetchData();
   }, []);
 
-  const handleAdd = (count) => {
-    console.log(`Adicionar ${count} itens ao carrinho`);
+  useEffect(() => {
+    if (categoryId) {
+      const filtered = allItems.filter((item) => item.category === categoryId);
+      setFilteredItems(filtered);
+    } else {
+      setFilteredItems(allItems);
+    }
+  }, [categoryId, allItems]);
+
+  const getMockData = () => {
+    return new Promise((resolve, reject) => {
+      resolve(mockData);
+    });
   };
 
   return (
-    <div className="container">
-      <section className="bg-white my-2">
-        <Greetings texto="Olá, Seja Bem Vindo(a) a minha futura loja virtual!" />
-        <Greetings texto="Aqui teremos diversos hardwares e componentes de computador." />
-      </section>
+    <div className="container bg-secondary p-2">
       <section className="my-2">
-        <ItemCount stock={10} initial={1} onAdd={handleAdd} />
+        {loading ? (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border text-success" role="status">
+              <span className="visually-hidden">Carregando...</span>
+            </div>
+          </div>
+        ) : (
+          <ItemList items={filteredItems} />
+        )}
       </section>
-      {showItemList && (
-        <section id="itemList" className="my-2">
-          <ItemList />
-        </section>
-      )}
     </div>
   );
 }

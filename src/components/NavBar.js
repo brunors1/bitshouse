@@ -1,5 +1,7 @@
-import React, { Fragment } from "react";
+import React from 'react';
 import CartWidget from './CartWidget';
+import { Link } from "react-router-dom";
+
 
 function NavBar() {
     return (
@@ -8,32 +10,48 @@ function NavBar() {
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
-            <a className="navbar-brand text-success fs-2" href="/">BITS<span className="text-white">House</span></a>
+            <Link className="navbar-brand text-success fs-2" to="/">BITS<span className="text-white">House</span></Link>
             <div className="collapse navbar-collapse fs-5" id="navbarTogglerDemo03">
               <div className="mx-auto">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                    <a className="nav-link mx-2" href="/">Inicio</a>
+                    <Link className="nav-link mx-2" to="/">Inicio</Link>
                   </li>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link dropdown-toggle mx-2" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Produtos
-                    </a>
+                    </Link>
                     <ul className="dropdown-menu">
-                      <li><a className="dropdown-item" href="#">Hardware</a></li>
+                      <li>
+                        <Link className="dropdown-item" to="/category/hardware">
+                          Hardware
+                        </Link>
+                      </li>
                       <li><hr className="dropdown-divider"/></li>
-                      <li><a className="dropdown-item" href="#">Monitores</a></li>
+                      <li>
+                        <Link className="dropdown-item" to="/category/monitores">
+                          Monitores
+                        </Link>
+                      </li>
                       <li><hr className="dropdown-divider"/></li>
-                      <li><a className="dropdown-item" href="#">Periféricos</a></li>
+                      <li>
+                        <Link className="dropdown-item" to="/category/perifericos">
+                          Periféricos
+                        </Link>
+                      </li>
                       <li><hr className="dropdown-divider"/></li>
-                      <li><a className="dropdown-item" href="#">Acessórios</a></li>
+                      <li>
+                        <Link className="dropdown-item" to="/category/acessorios">
+                          Acessórios
+                        </Link>
+                      </li>
                     </ul>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link mx-2" href="#">Sobre</a>
+                    <Link className="nav-link mx-2" to="/about">Sobre</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link mx-2" href="#">Contato</a>
+                    <Link className="nav-link mx-2" to="/contact">Contato</Link>
                   </li>
                 </ul>
               </div>
@@ -46,9 +64,9 @@ function NavBar() {
             </div>
             <div className="d-flex gap-3">
               <CartWidget/>
-              <a className="nav-link p-2 border rounded bg-success" href="#">
+              <Link className="nav-link p-2 border rounded bg-success" to="/account">
                 <i className="fa-solid fa-user fa-lg text-white"></i>
-              </a>
+              </Link>
             </div>
           </div>
         </nav>

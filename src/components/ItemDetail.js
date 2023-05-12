@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function ItemDetail({ id, title, price, pictureUrl, description, stock, category, subCategory }) {
+function ItemDetail({id, category, pictureUrl, title, description, price, stock}) {
   return (
     <div key={id}>
         <div className='row border py-2'>
-            <div className='col-md-6 text-start'>
-                {/* Futuro Atalho */}
+            <div className='col-md-6 text-start align-self-center fw-semibold text-dark'>
+                <Link className='btn btn-success fw-semibold' to="/">Lista de Itens</Link>
             </div>
             <div className='col-md-6 text-end'>
                 <button className='btn btn-outline-danger rounded mx-2'><i className="fa-regular fa-heart fa-lg"></i></button>
@@ -22,7 +23,7 @@ function ItemDetail({ id, title, price, pictureUrl, description, stock, category
                 <h3 className='text-success p-2'><i className="fa-sharp fa-solid fa-barcode text-white me-3"></i>{price}</h3>
                 <p className='p-2'>Estoque: <span className='border rounded px-3 py-2 fw-bold text-warning'>{stock}</span></p>
                 <div className='d-grid'>
-                    <button className='btn btn-success mt-2 fw-semibold' type='button'>Comprar</button>
+                    <Link className='btn btn-success mt-2 fw-semibold' type='button'>Comprar</Link>
                 </div>
             </div>
         </div>
