@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../styles/ItemCount.css";
+import { Link } from 'react-router-dom';
 
 function ItemCount({ stock, initial=1, onAdd }) {
   const [count, setCount] = useState(initial);
@@ -19,20 +19,57 @@ function ItemCount({ stock, initial=1, onAdd }) {
   const handleAdd = () => {
     if (count <= stock) {
       onAdd(count);
+      setCount(initial);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    const parsedValue = parseInt(value);
+    if (!isNaN(parsedValue)) {
+      if (parsedValue <= stock && parsedValue >= 1) {
+        setCount(parsedValue);
+      } else if (parsedValue > stock) {
+        setCount(stock);
+      } else if (parsedValue < 1) {
+        setCount(1);
+      }
     }
   };
 
   return (
-    <div className="bg-white p-4 square">
-      <div className="input-group mb-2 border rounded border-success-subtle">
-        <button className="btn btn-success" onClick={handleDecrease}>-</button>
-        <span className="ms-auto my-auto">{count}</span>
-        <button className="btn btn-success ms-auto " onClick={handleIncrease}>+</button>
+    <div className="square">
+      <div className="input-group mb-2 rounded border-success-subtle">
+        <button className="btn btn-warning border-end" onClick={handleDecrease}>
+          <i className="fas fa-minus"></i>
+        </button>
+        <input
+          type="text"
+          className="form-control text-center border-0 fw-bold"
+          value={count}
+          onChange={handleInputChange}
+        />
+        <button className="btn btn-warning border-start" onClick={handleIncrease}>
+          <i className="fas fa-plus"></i>
+        </button>
       </div>
-      <div className="input-group mx-auto mb-2 d-grid">
-        <button className="btn btn-success" onClick={handleAdd} disabled={stock === 0}>
+      <div className="m-auto mb-2 d-grid gap-2">
+        <button
+          className="btn btn-warning fw-semibold"
+          onClick={handleAdd}
+          disabled={stock === 0}
+        >
           {stock === 0 ? 'Fora de estoque' : `Adicionar ao carrinho`}
         </button>
+        <Link
+          className="btn btn-success fw-semibold"
+          to="/cart"
+          onClick={handleAdd}
+          disabled={stock === 0}
+          type='button'
+        >
+          {stock === 0 ? 'Fora de estoque' : `Comprar`}
+        </Link>
       </div>
     </div>
   );
