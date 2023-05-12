@@ -8,12 +8,12 @@ function NavBar() {
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
-            <a className="navbar-brand text-success fs-2" href="#">BITS<span className="text-white">House</span></a>
+            <a className="navbar-brand text-success fs-2" href="/">BITS<span className="text-white">House</span></a>
             <div className="collapse navbar-collapse fs-5" id="navbarTogglerDemo03">
               <div className="mx-auto">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                    <a className="nav-link mx-2" href="#">Inicio</a>
+                    <a className="nav-link mx-2" href="/">Inicio</a>
                   </li>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
