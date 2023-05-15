@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ItemList from "./ItemList";
-import { mockData } from "./ItemList";
+import mockData from "./mockData";
 import { useParams } from "react-router-dom";
 
 function ItemListContainer() {
@@ -8,6 +8,21 @@ function ItemListContainer() {
   const [allItems, setAllItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const { categoryId } = useParams();
+
+  useEffect(() => {
+    if (categoryId) {
+      const filtered = filterItemsByCategory(categoryId);
+      setFilteredItems(filtered);
+    } else {
+      setFilteredItems(allItems);
+    }
+  }, [categoryId, allItems]);
+
+  const getMockData = () => {
+    return new Promise((resolve, reject) => {
+      resolve(mockData);
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,19 +37,8 @@ function ItemListContainer() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (categoryId) {
-      const filtered = allItems.filter((item) => item.category === categoryId);
-      setFilteredItems(filtered);
-    } else {
-      setFilteredItems(allItems);
-    }
-  }, [categoryId, allItems]);
-
-  const getMockData = () => {
-    return new Promise((resolve, reject) => {
-      resolve(mockData);
-    });
+  const filterItemsByCategory = (category) => {
+    return allItems.filter((item) => item.category === category);
   };
 
   return (
