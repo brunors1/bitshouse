@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ItemDetail from './ItemDetail';
-import { mockData } from './ItemList';
+import mockData from './MockDataList';
 import { useParams } from 'react-router-dom';
 
 const getItems = () => {

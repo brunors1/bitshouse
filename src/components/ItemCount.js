@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function ItemCount({ stock, initial, onAdd }) {
   const [count, setCount] = useState(initial);
@@ -61,15 +60,6 @@ function ItemCount({ stock, initial, onAdd }) {
         >
           {stock === 0 ? 'Fora de estoque' : `Adicionar ao carrinho`}
         </button>
-        <Link
-          className="btn btn-success fw-semibold"
-          to="/cart"
-          onClick={handleAdd}
-          disabled={stock === 0}
-          type='button'
-        >
-          {stock === 0 ? 'Fora de estoque' : `Comprar`}
-        </Link>
       </div>
     </div>
   );
