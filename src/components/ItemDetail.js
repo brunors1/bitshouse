@@ -1,39 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
-import { useCartContext } from './CartContext';
+import { useCartContext } from '../contexts/CartContext';
 
 function ItemDetail({ id, pictureUrl, title, description, price, stock }) {
   const [quantity, setQuantity] = useState(0);
   const [cep, setCep] = useState('');
   const [address, setAddress] = useState(null);
 
-  const { addItem, cartItems } = useCartContext();
+  const { addItem } = useCartContext();
 
   const handleAddToCart = (count) => {
     setQuantity(count);
-
-    const item = {
-      id,
-      pictureUrl,
-      title,
-      description,
-      price,
-      quantity: count,
-    };
-
-    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
-    if (existingItem) {
-      const updatedItems = cartItems.map((cartItem) => {
-        if (cartItem.id === item.id) {
-          return { ...cartItem, quantity: cartItem.quantity + item.quantity };
-        }
-        return cartItem;
-      });
-      addItem(updatedItems);
-    } else {
-      addItem([...cartItems, item]);
-    }
+    addItem({ id, pictureUrl, title, description, price }, count);
   };
 
   const handleCepChange = (event) => {
@@ -89,7 +68,7 @@ function ItemDetail({ id, pictureUrl, title, description, price, stock }) {
                 type="button"
                 className="btn btn-success fw-semibold"
                 onClick={handleSearchCep}
-              >
+                >
                 Calcular Frete
               </button>
             </div>
@@ -106,19 +85,12 @@ function ItemDetail({ id, pictureUrl, title, description, price, stock }) {
           ) : (
             <div className="d-grid">
               {quantity === 0 ? (
-                <>
-                  <ItemCount stock={stock} initial={1} onAdd={handleAddToCart} />
-                  <Link
-                    className='btn btn-success mt-2 fw-semibold'
-                    onClick={() => addItem({ id, pictureUrl, title, description, price, quantity })}
-                    type='button'
-                    to="/cart"
-                  >
-                    Comprar
-                  </Link>
-                </>
+                <ItemCount stock={stock} initial={1} onAdd={handleAddToCart} />
               ) : (
-                <Link className='btn btn-success mt-2 fw-semibold' to="/cart" type='button'>Ir para o Carrinho</Link>
+                <>
+                  <Link className='btn btn-warning mt-2 fw-semibold' to="/checkout" onClick={() => handleAddToCart(quantity)}>Comprar</Link>
+                  <Link className='btn btn-success mt-2 fw-semibold' to="/cart" type='button'>Ir para o Carrinho</Link>
+                </>
               )}
             </div>
           )}
@@ -126,7 +98,6 @@ function ItemDetail({ id, pictureUrl, title, description, price, stock }) {
       </div>
     </div>
   );
-  
 }
 
 export default ItemDetail;
