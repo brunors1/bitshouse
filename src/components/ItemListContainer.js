@@ -1,45 +1,39 @@
-import React, { useState, useEffect } from "react";
-import ItemList from "./ItemList";
-import mockData from "./MockDataList";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import ItemList from './ItemList';
+import { useParams } from 'react-router-dom';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 function ItemListContainer() {
   const [loading, setLoading] = useState(true);
-  const [allItems, setAllItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const { categoryId } = useParams();
 
   useEffect(() => {
-    if (categoryId) {
-      const filtered = filterItemsByCategory(categoryId);
-      setFilteredItems(filtered);
-    } else {
-      setFilteredItems(allItems);
-    }
-  }, [categoryId, allItems]);
+    const fetchItems = async () => {
+      const db = getFirestore();
+      const itemsCollectionRef = collection(db, 'Items');
 
-  const getMockData = () => {
-    return new Promise((resolve, reject) => {
-      resolve(mockData);
-    });
-  };
+      let itemsQuery;
+      if (categoryId) {
+        const categoryQuery = query(itemsCollectionRef, where('category', '==', categoryId));
+        itemsQuery = categoryQuery;
+      } else {
+        itemsQuery = itemsCollectionRef;
+      }
 
-  useEffect(() => {
-    const fetchData = async () => {
       try {
-        const result = await getMockData();
-        setAllItems(result);
-        setTimeout(() => setLoading(false), 2000); // delay de 2 segundos
+        const querySnapshot = await getDocs(itemsQuery);
+        const itemsData = querySnapshot.docs.map((doc) => doc.data());
+        setFilteredItems(itemsData);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching items:', error);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchData();
-  }, []);
 
-  const filterItemsByCategory = (category) => {
-    return allItems.filter((item) => item.category === category);
-  };
+    fetchItems();
+  }, [categoryId]);
 
   return (
     <div className="container bg-secondary p-2">
