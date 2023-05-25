@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ItemDetail from './ItemDetail';
-import { mockData } from './ItemList';
+import mockData from './MockDataList';
 import { useParams } from 'react-router-dom';
 
 const getItems = () => {
@@ -38,7 +38,7 @@ function ItemDetailContainer() {
   return (
     <section>
       <div className='container bg-white'>
-        <ItemDetail key={item.id} title={item.title} price={item.price} pictureUrl={item.pictureUrl} description={item.description} stock={item.stock} subCategory={item.subCategory} category={item.category}/>
+        <ItemDetail id={item.id} key={item.id} title={item.title} price={item.price} pictureUrl={item.pictureUrl} description={item.description} stock={item.stock} subCategory={item.subCategory} category={item.category}/>
       </div>
     </section>
   )
