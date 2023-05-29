@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore';
 
 const CartContext = createContext();
 
@@ -38,6 +39,38 @@ export const CartProvider = ({ children }) => {
     return cartItems.some((cartItem) => cartItem.id === id);
   };
 
+  const createOrder = async (orderData) => {
+    const db = getFirestore();
+
+    try {
+      const ordersCollection = collection(db, 'orders');
+      const timestamp = Timestamp.fromDate(new Date());
+
+      const order = {
+        buyer: {
+          name: orderData.buyer.name,
+          phone: orderData.buyer.phone,
+          email: orderData.buyer.email,
+        },
+        items: orderData.items.map((item) => ({
+          id: item.id,
+          title: item.title,
+          price: item.price,
+        })),
+        date: timestamp,
+        total: orderData.total,
+      };
+
+      const newOrderRef = await addDoc(ordersCollection, order);
+      const orderId = newOrderRef.id;
+      console.log('Pedido criado com sucesso! ID:', orderId);
+      return orderId;
+    } catch (error) {
+      console.error('Erro ao criar o pedido:', error);
+      return null;
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -46,6 +79,7 @@ export const CartProvider = ({ children }) => {
         removeItem,
         clear,
         isInCart,
+        createOrder,
       }}
     >
       {children}

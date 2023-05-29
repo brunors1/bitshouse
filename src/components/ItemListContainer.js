@@ -11,7 +11,7 @@ function ItemListContainer() {
   useEffect(() => {
     const fetchItems = async () => {
       const db = getFirestore();
-      const itemsCollectionRef = collection(db, 'Items');
+      const itemsCollectionRef = collection(db, 'items');
 
       let itemsQuery;
       if (categoryId) {

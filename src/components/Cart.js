@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../contexts/CartContext';
 
 function Cart() {
-  const { cartItems, removeItem, clear } = useCartContext();
+  const { cartItems, removeItem, clear, createOrder } = useCartContext();
 
   const handleRemoveItem = (itemId) => {
     removeItem(itemId);
@@ -11,6 +11,24 @@ function Cart() {
 
   const handleClearCart = () => {
     clear();
+  };
+
+  const handleFinalizePurchase = () => {
+    const orderData = {
+      buyer: {
+        name: 'Joao da Silva',
+        phone: '11900007070',
+        email: 'joaosilva@gmail.com',
+      },
+      items: cartItems,
+      total: calculateTotal(),
+    };
+
+    createOrder(orderData);
+  };
+
+  const calculateTotal = () => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
 
   const renderCartItem = (item) => {
@@ -50,7 +68,7 @@ function Cart() {
       );
     }
 
-    const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const total = calculateTotal();
 
     return (
       <div className="row">
@@ -60,9 +78,9 @@ function Cart() {
         <div className="col-md-4 border rounded my-auto py-5">
           <div className="d-flex flex-column align-items-center">
             <p className="fw-bold">Total: R$ {total.toFixed(2)}</p>
-            <Link to="/checkout" className="btn btn-success">
+            <button className="btn btn-success" onClick={handleFinalizePurchase}>
               Finalizar Compra
-            </Link>
+            </button>
             <button className="btn btn-danger mt-3" onClick={handleClearCart}>
               Limpar Carrinho
             </button>
