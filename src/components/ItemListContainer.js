@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ItemList from './ItemList';
 import { useParams } from 'react-router-dom';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import Carousel from './Carousel';
 
 function ItemListContainer() {
   const [loading, setLoading] = useState(true);
@@ -36,8 +37,11 @@ function ItemListContainer() {
   }, [categoryId]);
 
   return (
-    <div className="container bg-secondary p-2">
-      <section className="my-2">
+    <div className="container bg-secondary p-0">
+      <section className='p-0 d-none d-md-block'>
+        <Carousel />
+      </section>
+      <section className="p-3">
         {loading ? (
           <div className="d-flex justify-content-center">
             <div className="spinner-border text-success" role="status">
