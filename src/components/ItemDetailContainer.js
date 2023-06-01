@@ -10,7 +10,7 @@ function ItemDetailContainer() {
   useEffect(() => {
     const fetchItem = async () => {
       const db = getFirestore();
-      const itemDocRef = doc(db, 'Items', itemIdParam);
+      const itemDocRef = doc(db, 'items', itemIdParam);
 
       try {
         const itemDocSnapshot = await getDoc(itemDocRef);
