@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../contexts/CartContext';
+import '../styles/Cart.css';
 
 function Cart() {
   const { cartItems, removeItem, clear, createOrder } = useCartContext();
@@ -91,7 +92,7 @@ function Cart() {
   };
 
   return (
-    <div className="container bg-white p-4">
+    <div className="container bg-white p-4" id='altura'>
       <h1 className="text-center">Carrinho</h1>
       {renderCartItems()}
     </div>
