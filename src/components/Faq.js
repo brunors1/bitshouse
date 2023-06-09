@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Faq = () => {
   return (
-    <div className='container bg-secondary p-2'>
-        <div className='text-center bg-light rounded'>
+    <div className='container p-2'>
+        <div className='text-center bg-light border rounded mb-2'>
                 <h1 className='text-success'>FAQ</h1>
                 <h4 className='pb-2'>Perguntas Frequentes</h4>
         </div>

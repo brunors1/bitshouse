@@ -9,6 +9,8 @@ import Cart from './components/Cart';
 import Footer from './components/Footer';
 import About from './components/About';
 import Faq from './components/Faq';
+import Account from './components/Account';
+import Checkout from './components/Checkout';
 
 function App() {
   return (
@@ -21,10 +23,10 @@ function App() {
             <Route exact path='/category/:categoryId' element={<ItemListContainer />} />
             <Route exact path='/item/:itemId' element={<ItemDetailContainer />} />
             <Route exact path='/cart' element={<Cart/>} />
-            <Route exact path='/account' element={<p className='bg-white text-center fw-semibold'>Página minha conta</p>} />
+            <Route exact path='/account' element={<Account />} />
             <Route exact path='/about' element={<About />} />
             <Route exact path='/faq' element={<Faq />} />
-            <Route exact path='/checkout' element={<p>Rota de checkout</p>} />
+            <Route exact path='/checkout' element={<Checkout />} />
             <Route exact path='*' element={<p className='bg-white text-center'>Página não encontrada</p>} />
           </Routes>
           <Footer />
