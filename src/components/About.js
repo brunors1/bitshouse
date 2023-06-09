@@ -6,8 +6,8 @@ import AboutImage3 from '../assets/images/robert-godwin-persona.jpg'
 
 const About = () => {
   return (
-    <div className='container bg-secondary py-3'>
-      <div className='bg-white rounded p-4 mb-3'> 
+    <div className='container py-3'>
+      <div className='bg-white  border rounded p-4 mb-3'> 
         <h1 className='text-center text-success'>Sobre a BitsHouse</h1>
         <div className='m-5 fw-semibold'>
             <p>
@@ -27,7 +27,7 @@ const About = () => {
             </p>
         </div>    
       </div>
-      <div className='bg-white rounded p-4 mb-3'> 
+      <div className='bg-white border rounded p-4 mb-3'> 
         <h1 className='text-center text-success'>Equipe</h1>
         <div className="row text-center">
             <div className="col-lg-4">
@@ -59,7 +59,7 @@ const About = () => {
             </div>
         </div>
       </div>
-      <div className='bg-white rounded p-4'>
+      <div className='bg-white border rounded p-4'>
         <h1 className='text-center text-success'>Contato</h1>
         <p className='text-center fw-semibold'>
             Tem alguma dúvida ou sugestão? Entre em contato conosco através do nosso formulário online ou pelos nossos canais de atendimento listados abaixo:

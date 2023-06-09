@@ -42,8 +42,8 @@ function Cart() {
           <div className="col-md-10">
             <div className="card-body">
               <h5 className="card-title">{item.title}</h5>
-              <p className="card-text">Preço: R$ {item.price}</p>
-              <p className="card-text">Quantidade: {item.quantity}</p>
+              <p className="card-text fw-semibold">Preço: <span className="text-success"> R$ {item.price}</span></p>
+              <p className="card-text fw-semibold">Quantidade: <span className="text-success">{item.quantity}</span></p>
               <button
                 className="btn btn-danger"
                 onClick={() => handleRemoveItem(item.id)}
@@ -79,9 +79,9 @@ function Cart() {
         <div className="col-md-4 border rounded my-auto py-5">
           <div className="d-flex flex-column align-items-center">
             <p className="fw-bold">Total: R$ {total.toFixed(2)}</p>
-            <button className="btn btn-success" onClick={handleFinalizePurchase}>
+            <Link className="btn btn-success" to="/checkout" onClick={handleFinalizePurchase}>
               Finalizar Compra
-            </button>
+            </Link>
             <button className="btn btn-danger mt-3" onClick={handleClearCart}>
               Limpar Carrinho
             </button>
@@ -92,8 +92,8 @@ function Cart() {
   };
 
   return (
-    <div className="container bg-white p-4" id='altura'>
-      <h1 className="text-center">Carrinho</h1>
+    <div className="container bg-white p-4 minHeight">
+      <h1 className="text-center text-success">Carrinho</h1>
       {renderCartItems()}
     </div>
   );
