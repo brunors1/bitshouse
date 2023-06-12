@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# BitsHouse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descrição
 
-## Available Scripts
+BitsHouse é um site de comércio eletrônico para componentes de computadores. Este projeto foi desenvolvido como parte do meu curso na CoderHouse e permite que os usuários naveguem e comprem componentes de computadores online. É um site simples sem muitas implementações.
 
-In the project directory, you can run:
+## Tecnologias Utilizadas
 
-### `npm start`
+- React: O projeto foi desenvolvido usando o framework React, uma biblioteca JavaScript para construção de interfaces de usuário.
+- Bootstrap: O framework CSS Bootstrap foi utilizado para agilizar o processo de desenvolvimento e garantir um layout responsivo e estilizado para o site.
+- HTML: A estrutura básica do site foi criada usando HTML (HyperText Markup Language).
+- CSS: Pequenas partes do estilo visual do site foi implementado usando CSS (Cascading Style Sheets).
+- JavaScript: Algumas das funcionalidades interativas e dinâmicas foram implementadas usando JavaScript.
+- FontAwesome: A biblioteca FontAwesome foi usada para adicionar ícones personalizados ao projeto.
+- API VIA CEP: A API VIA CEP foi usada para buscar e preencher o campo de frete (utilizado apenas na página "Detalhes do Item").
+- SweetAlert2: A biblioteca SweetAlert2 foi usada para exibir mensagens e notificações amigáveis ao usuário.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Como Começar
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para obter uma cópia local do projeto e executá-lo, siga estas etapas:
 
-### `npm test`
+1. Clone o repositório BitsHouse em sua máquina local.
+`git clone https://github.com/seu-usuario/bitshouse.git`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Acesse o diretório do projeto.
+`cd bitshouse`
 
-### `npm run build`
+3. Instale as dependências do projeto usando npm.
+`npm install`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Agora, você está pronto para executar o projeto BitsHouse.
+`npm start`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+O site estará disponível em `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Estrutura do Projeto
 
-### `npm run eject`
+O projeto BitsHouse possui a seguinte estrutura de diretórios:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `public`: Contém os arquivos e pastas estáticos que serão servidos diretamente pelo servidor web.
+- `src`: Contém o código-fonte do projeto React.
+- `components`: Contém componentes reutilizáveis usados em todo o site.
+- `styles`: Contém arquivos de estilo CSS personalizados.
+- `App.js`: Componente raiz da aplicação React.
+- `index.js`: Arquivo de entrada da aplicação React.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contribuindo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Se você deseja contribuir para o desenvolvimento do projeto BitsHouse, sinta-se à vontade para fazer um fork do repositório, implementar melhorias e enviar um pull request.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Espero que este README forneça as informações necessárias para você começar a trabalhar no projeto BitsHouse. Se tiver mais alguma dúvida, não hesite em entrar em contato. Feliz codificação!
